@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style media="screen">
+            * {
+                margin: 0px;
+                padding: 0px;
+            }
+            img {
+                display: block;
+                width: 200px;
+                height: 200px;
+            }
+        </style>
+    </head>
+    <body>
+        <img data-src="http://img2.imgtn.bdimg.com/it/u=715576259,3597168931&fm=23&gp=0.jpg" alt="" />
+        <img data-src="http://img2.imgtn.bdimg.com/it/u=715576259,3597168931&fm=23&gp=0.jpg" alt="" />
+        <img data-src="http://img2.imgtn.bdimg.com/it/u=715576259,3597168931&fm=23&gp=0.jpg" alt="" />
+        <img data-src="http://img2.imgtn.bdimg.com/it/u=715576259,3597168931&fm=23&gp=0.jpg" alt="" />
+        <img data-src="http://img2.imgtn.bdimg.com/it/u=715576259,3597168931&fm=23&gp=0.jpg" alt="" />
+        <img data-src="http://img2.imgtn.bdimg.com/it/u=715576259,3597168931&fm=23&gp=0.jpg" alt="" />
+        <img data-src="http://img2.imgtn.bdimg.com/it/u=715576259,3597168931&fm=23&gp=0.jpg" alt="" />
+        <img data-src="http://img2.imgtn.bdimg.com/it/u=715576259,3597168931&fm=23&gp=0.jpg" alt="" />
+        <img data-src="http://img2.imgtn.bdimg.com/it/u=715576259,3597168931&fm=23&gp=0.jpg" alt="" />
+        <img data-src="http://img2.imgtn.bdimg.com/it/u=715576259,3597168931&fm=23&gp=0.jpg" alt="" />
+        <img data-src="http://img2.imgtn.bdimg.com/it/u=715576259,3597168931&fm=23&gp=0.jpg" alt="" />
+        <img data-src="http://img2.imgtn.bdimg.com/it/u=715576259,3597168931&fm=23&gp=0.jpg" alt="" />
+        <img data-src="http://img2.imgtn.bdimg.com/it/u=715576259,3597168931&fm=23&gp=0.jpg" alt="" />
+
+
+        <script type="text/javascript">
+            var LazyLoad = (function() {
+                var lazy = [];
+                var setLazy = function() {
+                    lazy = document.getElementsByTagName('img');
+                    lazy = [].slice.call(lazy);
+                };
+                var isInViewport = function(el) {
+                    var rect = el.getBoundingClientRect();
+                    return (
+                        rect.bottom >= 0 &&
+                        rect.left >= -rect.width &&
+                        rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+                        rect.right <= ((window.innerWidth || document.documentElement.clientWidth) + rect.width)
+                    );
+                };
+                var load = function() {
+                    for (var i = 0; i < lazy.length; i++) {
+                        if (isInViewport(lazy[i])) {
+                            lazy[i].src = lazy[i].getAttribute('data-src');
+                            lazy.splice(i, 1);
+                        }
+                    }
+                };
+                var start = function() {
+                    window.addEventListener('scroll', function(e) {
+                        load();
+                    }, false);
+                };
+
+                setLazy();
+                load();
+                return {
+                    start: start
+                };
+            })();
+            //LazyLoad.start();
+        </script>
+    </body>
+</html>
+
